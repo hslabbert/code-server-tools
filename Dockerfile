@@ -2,7 +2,7 @@ FROM docker:18.09 AS dind
 
 FROM codercom/code-server:1.939
 
-LABEL version="1.939.1"
+LABEL version="1.939.2"
 LABEL maintainer="Hugo Slabbert <hugo@slabnet.com>"
 
 RUN sudo apt update && sudo apt install -y \
@@ -18,7 +18,10 @@ RUN wget -O docker.tgz https://download.docker.com/linux/static/stable/x86_64/do
     ; \
     rm docker.tgz; \
     sudo addgroup --gid 999 docker; \
-    sudo usermod -G docker coder
+    sudo usermod -G docker coder; \
+    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py; \
+    sudo -H python3 get-pip.py; \
+    sudo -u coder pip install virtualenvwrapper --user
 
 EXPOSE 8443
 ENTRYPOINT ["dumb-init", "code-server"]
