@@ -1,8 +1,8 @@
 FROM docker:18.09 AS dind
 
-FROM codercom/code-server:1.939
+FROM codercom/code-server:3.4.1
 
-LABEL version="1.939.2"
+LABEL version="3.4.1.0"
 LABEL maintainer="Hugo Slabbert <hugo@slabnet.com>"
 
 RUN sudo apt update && sudo apt install -y \
